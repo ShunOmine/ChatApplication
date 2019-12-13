@@ -2,26 +2,21 @@ import React, { Component } from 'react'
 import _ from 'lodash'
 // firebase
 import 'firebase/auth'
-// stylesheets
-import '../stylesheets/App.css'
+// models
+import { MainProps } from '../models'
+// actions
 import { addName } from '../actions/User'
 import { getMessages } from '../actions/Messages'
+// lib
 import { connect } from "react-redux"
 import moment from 'moment'
 import 'moment/locale/ja'
+// stylesheets
+import '../stylesheets/App.css'
 
 export const Name = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*=\s*([^;]*).*$)|^.*$/, "$1")
 
-interface Props {
-  addName: Function,
-  getMessages: Function,
-  name: string,
-  messages: {
-    name: string,
-    content: string,
-    created_at: any,
-  }[],
-}
+interface Props extends MainProps {}
 
 class App extends Component<Props> {
   constructor(props: Props) {
