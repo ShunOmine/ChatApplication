@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+// firebase
+// import firebase from './firebase'
+import 'firebase/auth'
+// stylesheets
+import './App.css'
+import { addName } from './actions/User'
+import { connect } from "react-redux"
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface Props {
+  addName: Function,
+  name: string
 }
 
-export default App;
+class App extends Component<Props> {
+  render() {
+    return (
+      <div className="App">
+        <input type="text" onChange={(e) => this.props.addName(e.target.value)} />
+        <p>{this.props.name}</p>
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state: any) => ({
+  console: console.log(state),
+  name: state.name,
+})
+const mapDispatchToProps = ({ addName })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
