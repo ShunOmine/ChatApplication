@@ -3,9 +3,9 @@ import _ from 'lodash'
 // firebase
 import 'firebase/auth'
 // stylesheets
-import './App.css'
-import { addName } from './actions/User'
-import { getMessages } from './actions/Messages'
+import '../stylesheets/App.css'
+import { addName } from '../actions/User'
+import { getMessages } from '../actions/Messages'
 import { connect } from "react-redux"
 import moment from 'moment'
 import 'moment/locale/ja'
