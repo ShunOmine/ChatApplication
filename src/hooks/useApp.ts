@@ -33,5 +33,7 @@ export const useApp = () => {
     document.cookie = `name=${name}; path=/;`
   }
 
-  return { messages, getApp, onSubmit, setName }
+  const Name = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*=\s*([^;]*).*$)|^.*$/, "$1")
+
+  return { messages, getApp, onSubmit, setName, Name }
 }

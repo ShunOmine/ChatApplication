@@ -12,7 +12,5 @@ export const getMessages = () => async (dispatch: Function) => {
   response.docs.map(doc => (
     data.push(doc.data())
   ))
-  console.log(data)
-
   dispatch({ type: GET_MESSAGES, data })
 }

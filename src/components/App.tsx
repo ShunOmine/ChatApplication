@@ -2,22 +2,16 @@ import React, { FC, useEffect } from 'react'
 import _ from 'lodash'
 // firebase
 import 'firebase/auth'
-// models
-import { MainProps } from '../models'
 // lib
 import moment from 'moment'
 import 'moment/locale/ja'
+import { useApp } from '../hooks/useApp'
 // stylesheets
 import '../stylesheets/App.css'
-import {useApp} from "../hooks/useApp";
-
-export const Name = document.cookie.replace(/(?:(?:^|.*;\s*)name\s*=\s*([^;]*).*$)|^.*$/, "$1")
-
-interface Props extends MainProps {}
 
 const App: FC = (): any => {
   // hooks
-  const { messages, getApp, onSubmit, setName } = useApp()
+  const { messages, getApp, onSubmit, setName, Name } = useApp()
 
   // effect
   useEffect(() => {
@@ -26,7 +20,11 @@ const App: FC = (): any => {
 
   const renderForm = () => {
     return Name ?
-      <p>{Name}</p>
+      <form>
+        <input type="text" name="name" className="readonly_input" value={Name} readOnly/>
+        <input type="text" name="content" placeholder="メッセージを入力して下さい" />
+        <input type="submit" value="送信" />
+      </form>
       :
       <form onSubmit={() => onSubmit()}>
         <input id="name" type="text" name="name" onChange={(e) => setName(e.target.value)} placeholder="お名前を入力して下さい" />
