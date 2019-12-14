@@ -144,6 +144,12 @@ code {
   font-size: 12px;
 }
 /* message end */
+.progress {
+  color: var(--blue);
+  left: 43%;
+  position: relative;
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

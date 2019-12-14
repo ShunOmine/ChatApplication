@@ -3,6 +3,7 @@ import _ from 'lodash'
 // ui
 import Header from './Header'
 import Message from './Message'
+import { CircularProgress } from '@material-ui/core'
 // firebase
 import 'firebase/auth'
 // hooks
@@ -23,6 +24,7 @@ const App: FC = (props: any): any => {
     setName,
     setContent,
     postMessage,
+    loading,
   } = useApp()
 
   // effect
@@ -65,7 +67,11 @@ const App: FC = (props: any): any => {
     <div className="App">
       <Header />
       { renderForm() }
-      { renderMessage() }
+      { loading ?
+        <CircularProgress className="progress" />
+        :
+        renderMessage()
+      }
     </div>
   )
 }

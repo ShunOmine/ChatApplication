@@ -1,4 +1,4 @@
-import {useCallback, useMemo, useState} from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // firebase
 import firebase from '../firebase'
@@ -19,6 +19,7 @@ export const useApp = () => {
   const created_at = new Date()
 
   // state
+  const [loading, setLoading] = useState(false)
   const [Name, setName] = useState('')
   const [content, setContent] = useState('...loading')
   const [messages, setMessages] = useState([{
@@ -46,21 +47,27 @@ export const useApp = () => {
 
   // getApp
   const getApp = useCallback(async () => {
+    setLoading(true)
     try {
       dispatch(getMessages())
+      setLoading(false)
     } catch (e) {
       console.log(e)
+      setLoading(false)
     }
   }, [dispatch])
 
   // post message
   const postMessage = () => {
+    setLoading(true)
     try {
       dispatch(sendMessage(name, content, created_at))
       const input = document.getElementById("content") as HTMLInputElement
       input.value = ''
+      setLoading(false)
     } catch (e) {
       console.log(e)
+      setLoading(false)
     }
   }
 
@@ -75,5 +82,18 @@ export const useApp = () => {
     return moment(time).fromNow()
   }
 
-  return { messages, getApp, onSubmit, content, name, Name, setName, collection, setContent, postMessage, renderTime }
+  return {
+    messages,
+    getApp,
+    onSubmit,
+    content,
+    name,
+    Name,
+    setName,
+    collection,
+    setContent,
+    postMessage,
+    renderTime,
+    loading,
+  }
 }
