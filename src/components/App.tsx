@@ -6,29 +6,30 @@ import 'firebase/auth'
 import moment from 'moment'
 import 'moment/locale/ja'
 import { useApp } from '../hooks/useApp'
+import { reduxForm } from 'redux-form'
 // stylesheets
 import '../stylesheets/App.css'
 
-const App: FC = (): any => {
+const App: FC = (props: any): any => {
   // hooks
-  const { messages, getApp, onSubmit, setName, Name } = useApp()
-
+  const { messages, getApp, onSubmit, name, Name, setName, setContent, postMessage } = useApp()
   // effect
   useEffect(() => {
     getApp()
   }, [getApp])
 
   const renderForm = () => {
-    return Name ?
-      <form>
+    const { handleSubmit } = props
+    return name ?
+      <form onSubmit={handleSubmit(postMessage)}>
         <input type="text" name="name" className="readonly_input" value={Name} readOnly/>
-        <input type="text" name="content" placeholder="メッセージを入力して下さい" />
-        <input type="submit" value="送信" />
+        <input type="text" name="content" id="content" onChange={(e) => setContent(e.target.value)} placeholder="メッセージを入力して下さい" />
+        <button type="submit">送信</button>
       </form>
       :
-      <form onSubmit={() => onSubmit()}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input id="name" type="text" name="name" onChange={(e) => setName(e.target.value)} placeholder="お名前を入力して下さい" />
-        <input type="submit" value="ログイン" />
+        <button type="submit">ログイン</button>
       </form>
   }
 
@@ -51,4 +52,4 @@ const App: FC = (): any => {
   )
 }
 
-export default App
+export default reduxForm({ form: "userLoginForm" })(App)
