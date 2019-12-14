@@ -9,7 +9,7 @@ function Message(message: any) {
     <div className="message_box">
       <p className="name">{message.name}</p>
       <p className="content">{message.content}</p>
-      <p className="time">{renderTime(message.created_at.toDate())}</p>
+      <small className="time">{renderTime(message.created_at.toDate())}</small>
     </div>
   )
 }

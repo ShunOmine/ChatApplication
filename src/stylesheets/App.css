@@ -1,7 +1,144 @@
 @charset "UTF-8";
+@import 'colors.css';
+
+.App {
+  width: 370px;
+  margin: auto;
+  background: var(--deep-white);
+  padding-bottom: 20px;
+}
+/* header start */
+.header {
+  background: var(--blue-gradient);
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.header .title {
+  margin-top: 0;
+  color: var(--white);
+}
+.header .tech {
+  display: inline-block;
+  color: var(--white);
+  margin-top: 0;
+  font-weight: bold;
+  font-size: 14px;
+  padding-right: 2px;
+}
+/* header end */
+/* form start */
+.form {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 12px 5px;
+  transition: all .3s ease-in-out;
+  margin-bottom: 5px;
+}
+
+.form .name,
+.form .content {
+  border: 1px solid var(--gray);
+  padding: 6px 4px;
+  color: var(--black);
+  border-radius: 4px;
+  margin-right: 5px;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.form .name {
+  width: 76%;
+}
+
+.form .content {
+  width: 60%;
+}
+
+.form .readonly_input {
+  display: none;
+}
+
+.form .show_name {
+  width: 17%;
+  vertical-align: middle;
+  display: inline-block;
+  text-align: center;
+  transition: all .3s ease-in-out;
+}
+
+.form .submit {
+  height: 100%;
+  border: transparent;
+  -webkit-appearance: none;
+  background: var(--blue-gradient);
+  color: var(--white);
+  border-radius: 4px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+}
+
+.form .submit.l {
+  padding: 5px 13px;
+}
+
+.form .submit.m {
+  padding: 5px 20px;
+}
+/* form end */
+/* message start */
+.message_box {
+  width: 95%;
+  padding: 4px 10px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background: var(--white);
+  margin: 0 auto 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  transition: all .3s ease-in-out;
+  animation: fadeIn 1s ease-in-out alternate forwards;
+}
 
 .message_box p {
   display: inline-block;
-  padding-right: 15px;
+  font-size: 15px;
 }
 
+.message_box .name {
+  width: 100px;
+}
+
+.message_box .content {
+  text-align: left;
+  padding-right: 37px;
+  width: 130px;
+}
+
+.message_box .time {
+  color: var(--light-gray);
+  font-size: 12px;
+}
+/* message end */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+    transition: all .3s ease-in-out;
+  }
+  50% {
+    opacity: .5;
+    transform: translateY(-5%);
+    transition: all .3s ease-in-out;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+    transition: all .3s ease-in-out;
+  }
+}

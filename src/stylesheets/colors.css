@@ -1,0 +1,21 @@
+:root {
+  /* colors */
+  --brand: #36D1DC;
+  --dark-blue: #5B86E5;
+  --blue: #00ACED;
+  --deep-blue: #3742FA;
+  --orange: #E67E22;
+  --yellow: #F1C40F;
+  --green: #2ECC71;
+  --light-green: #09D3AC;
+  --white: #FEFEFE;
+  --gray-white: #F6F7F7;
+  --deep-white: #F8FBFE;
+  --gray: #CCCCCC;
+  --light-gray: #6A6E71;
+  --deep-gray: #999999;
+  --black: #333333;
+  /* gradient */
+  --blue-gradient: linear-gradient(to right, var(--brand), var(--dark-blue));
+  --webkit-blue-gradient: -webkit-linear-gradient(to right, var(--brand), var(--dark-blue))
+}
