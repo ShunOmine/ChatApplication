@@ -17,19 +17,23 @@ interface State extends MainProps{}
 export const useApp = () => {
   // date
   const created_at = new Date()
+
   // state
-  const [Name, setName] = useState('TestUser')
-  const [content, setContent] = useState('')
+  const [Name, setName] = useState('')
+  const [content, setContent] = useState('...loading')
   const [messages, setMessages] = useState([{
     name: Name,
-    content: '',
+    content: content,
     created_at: firebase.firestore.Timestamp.fromDate(new Date())
   }])
+
   // selector
   const name = useSelector((state: State) => state.name)
+
   // dispatch
   const dispatch = useDispatch()
 
+  // db real time
   const collection = useMemo(() => {
     const db = firebase.firestore().collection("messages").orderBy('created_at', 'desc')
     db.onSnapshot(query => {
@@ -40,6 +44,7 @@ export const useApp = () => {
     return db
   }, [])
 
+  // getApp
   const getApp = useCallback(async () => {
     try {
       dispatch(getMessages())
@@ -48,6 +53,7 @@ export const useApp = () => {
     }
   }, [dispatch])
 
+  // post message
   const postMessage = () => {
     try {
       dispatch(sendMessage(name, content, created_at))
@@ -58,10 +64,12 @@ export const useApp = () => {
     }
   }
 
+  // add name
   const onSubmit = () => {
     dispatch(addName(Name))
   }
 
+  // time
   const renderTime = (time: any) => {
     moment.locale("ja")
     return moment(time).fromNow()

@@ -24,11 +24,13 @@ const App: FC = (props: any): any => {
     setContent,
     postMessage,
   } = useApp()
+
   // effect
   useEffect(() => {
     getApp()
   }, [getApp])
 
+  // render form
   const renderForm = () => {
     const { handleSubmit } = props
     return name ?
@@ -45,6 +47,7 @@ const App: FC = (props: any): any => {
       </form>
   }
 
+  // render message
   const renderMessage = () => {
     return (
       <div className="message_area">
@@ -67,4 +70,4 @@ const App: FC = (props: any): any => {
   )
 }
 
-export default reduxForm({ form: "userLoginForm" })(App)
+export default reduxForm({ form: "Form"})(App)

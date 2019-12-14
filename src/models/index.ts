@@ -1,6 +1,4 @@
 export interface MainProps {
-  addName: Function,
-  getMessages: Function,
   name: string,
   messages: {
     name: string,
