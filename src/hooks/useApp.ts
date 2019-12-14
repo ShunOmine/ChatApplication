@@ -1,5 +1,6 @@
 import {useCallback, useMemo, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+// firebase
 import firebase from '../firebase'
 import '@firebase/firestore'
 // actions
@@ -7,6 +8,9 @@ import { addName } from '../actions/User'
 import { getMessages, sendMessage } from '../actions/Messages'
 // models
 import { MainProps } from '../models'
+// lib
+import moment from 'moment'
+import 'moment/locale/ja'
 
 interface State extends MainProps{}
 
@@ -58,5 +62,10 @@ export const useApp = () => {
     dispatch(addName(Name))
   }
 
-  return { messages, getApp, onSubmit, content, name, Name, setName, collection, setContent, postMessage }
+  const renderTime = (time: any) => {
+    moment.locale("ja")
+    return moment(time).fromNow()
+  }
+
+  return { messages, getApp, onSubmit, content, name, Name, setName, collection, setContent, postMessage, renderTime }
 }

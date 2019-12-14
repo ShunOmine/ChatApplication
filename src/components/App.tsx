@@ -1,18 +1,28 @@
 import React, { FC, useEffect } from 'react'
 import _ from 'lodash'
+// ui
+import Message from './Message'
 // firebase
 import 'firebase/auth'
-// lib
-import moment from 'moment'
-import 'moment/locale/ja'
+// hooks
 import { useApp } from '../hooks/useApp'
+// lib
 import { reduxForm } from 'redux-form'
 // stylesheets
 import '../stylesheets/App.css'
 
 const App: FC = (props: any): any => {
   // hooks
-  const { messages, getApp, onSubmit, name, Name, setName, setContent, postMessage } = useApp()
+  const {
+    messages,
+    getApp,
+    onSubmit,
+    name,
+    Name,
+    setName,
+    setContent,
+    postMessage,
+  } = useApp()
   // effect
   useEffect(() => {
     getApp()
@@ -33,21 +43,23 @@ const App: FC = (props: any): any => {
       </form>
   }
 
-  const renderTime = (time: any) => {
-    moment.locale("ja")
-    return moment(time).fromNow()
+  const renderMessage = () => {
+    return (
+      <div className="message_area">
+        {_.map(messages, (message, index) => (
+          <Message
+            key={index}
+            {...message}
+          />
+        ))}
+      </div>
+    )
   }
 
   return (
     <div className="App">
       { renderForm() }
-      {_.map(messages, (message, index) => (
-        <div key={index} className="messages_area">
-          <p className="name">{message.name}</p>
-          <p className="content">{message.content}</p>
-          <p className="time">{renderTime(message.created_at.toDate())}</p>
-        </div>
-      ))}
+      { renderMessage() }
     </div>
   )
 }
