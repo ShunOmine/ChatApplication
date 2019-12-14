@@ -65,7 +65,7 @@ code {
   color: var(--black);
   margin-right: 5px;
   outline: none;
-  padding: 6px 4px;
+  padding: 9px 6px;
   -webkit-appearance: none;
 }
 
@@ -102,11 +102,11 @@ code {
 }
 
 .form .submit.l {
-  padding: 5px 13px;
+  padding: 8px 13px;
 }
 
 .form .submit.m {
-  padding: 5px 20px;
+  padding: 8px 20px;
 }
 /* form end */
 /* message start */
@@ -144,6 +144,17 @@ code {
   font-size: 12px;
 }
 /* message end */
+/* responsive start */
+@media screen and (max-width: 768px) {
+  .form .name {
+    width: 73%;
+  }
+
+  .form .content {
+    width: 58%;
+  }
+}
+/* responsive end */
 .progress {
   color: var(--blue);
   left: 43%;
