@@ -108,6 +108,12 @@ code {
 .form .submit.m {
   padding: 8px 20px;
 }
+
+.form .submit[disabled] {
+  background: var(--gray);
+  color: var(--white);
+  cursor: default;
+}
 /* form end */
 /* message start */
 .message_box {

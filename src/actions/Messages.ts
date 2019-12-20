@@ -7,12 +7,10 @@ export const SEND_MESSAGE = 'SEND_MESSAGE'
 const db = firebase.firestore()
 const messages = db.collection("messages")
 
+// foreach
 export const getMessages = () => async (dispatch: Function) => {
   const response = await messages.get()
-  const data: any = []
-  response.docs.map(doc => (
-    data.push(doc.data())
-  ))
+  const data = response.docs.map(doc => doc.data())
   dispatch({ type: GET_MESSAGES, data })
 }
 

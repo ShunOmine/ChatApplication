@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import firebase from '../firebase'
 import '@firebase/firestore'
 // actions
-import { addName } from '../actions/User'
 import { getMessages, sendMessage } from '../actions/Messages'
 // models
 import { MainProps } from '../models'
@@ -71,11 +70,6 @@ export const useApp = () => {
     }
   }
 
-  // add name
-  const onSubmit = () => {
-    dispatch(addName(Name))
-  }
-
   // time
   const renderTime = (time: any) => {
     moment.locale("ja")
@@ -85,7 +79,6 @@ export const useApp = () => {
   return {
     messages,
     getApp,
-    onSubmit,
     content,
     name,
     Name,
